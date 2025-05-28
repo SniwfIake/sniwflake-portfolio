@@ -3,134 +3,100 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sniwflake</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet">
+  <title>Sniwflake Portfolio</title>
   <style>
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(ellipse at center, #0a0a0a 0%, #050505 100%);
-      font-family: 'Orbitron', sans-serif;
-      color: #9ecbff;
+      background-color: black;
+      color: white;
+      font-family: monospace;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
-    header {
+
+    canvas.matrix-fall {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .content {
+      padding: 100px 30px;
       text-align: center;
-      padding: 2rem;
+    }
+
+    h1 {
       font-size: 3rem;
       color: #8ab4ff;
-      box-shadow: 0 0 30px #8ab4ff;
-      background: #0f0f0f;
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
-    section {
-      padding: 5rem 2rem;
-      max-width: 1100px;
-      margin: auto;
+
+    ul {
+      list-style: none;
+      padding: 0;
     }
-    h2 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: #9ecbff;
-      border-bottom: 2px solid #9ecbff;
-    }
-    .project {
-      background: linear-gradient(to right, #10121b, #1b1f2b);
-      margin: 2rem 0;
-      padding: 1.5rem;
-      border-left: 5px solid #8ab4ff;
-      border-radius: 15px;
-      box-shadow: 0 0 25px rgba(142,180,255,0.3);
-    }
-    .project h3 {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    .about-card {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      background: linear-gradient(to right, #10121b, #1b1f2b);
-      padding: 2rem;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(142,180,255,0.2);
-      gap: 2rem;
-    }
-    .about-card img {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 3px solid #8ab4ff;
-      box-shadow: 0 0 20px rgba(142,180,255,0.4);
-    }
-    .about-text {
-      flex: 1;
-      color: #ccd6f6;
-    }
-    .about-text p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-    }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
-      background: #0a0a0a;
-      border-top: 2px solid #8ab4ff;
+
+    li {
+      margin: 10px 0;
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-  <header>Sniwflake</header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="about-card">
-      <img src="https://avatars.githubusercontent.com/u/000000?v=4" alt="Sniwflake Avatar">
-      <div class="about-text">
-        <p>I’m <strong>Sniwflake</strong> — a multidimensional developer crafting experiences that feel like the future. With over 5 years of experience, I specialize in building advanced bots, immersive games, powerful scripts, and aesthetic websites.</p>
-        <p>I’m fluent in multiple languages including <strong>Python</strong>, <strong>Rust</strong>, <strong>C++</strong>, <strong>JavaScript</strong>, and more. I shape code into reality, from 3D models to PvP Minecraft clients, Roblox games, and futuristic UIs that stand out.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
+  <canvas class="matrix-fall"></canvas>
+  <div class="content">
+    <h1>Sniwflake Portfolio</h1>
+    <p>Game Developer • Scripter • Coder</p>
     <h2>Projects</h2>
-    <div class="project">
-      <h3>Sniw Client</h3>
-      <p>Custom Minecraft PvP client with a sci-fi UI, launcher, and cross-version compatibility.</p>
-    </div>
-    <div class="project">
-      <h3>Linux Boot Camp Assistant</h3>
-      <p>Dual-boot wizard with auto partitioning, bootloader fixing, and dark-themed GUI.</p>
-    </div>
-    <div class="project">
-      <h3>3D Sci-Fi Game Demo</h3>
-      <p>Experimental first-person shooter with modular weapons and enemy AI.</p>
-    </div>
-    <div class="project">
-      <h3>Roblox Games & Animations</h3>
-      <p>High-quality Roblox experiences with custom animations and game mechanics.</p>
-    </div>
-  </section>
+    <ul>
+      <li>Custom Minecraft PvP Client</li>
+      <li>Python 3D FPS Game</li>
+      <li>Roblox Games & Animations</li>
+      <li>Linux Boot Camp Assistant</li>
+    </ul>
+  </div>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: your.email@example.com</p>
-    <p>GitHub: <a href="https://github.com/sniwflake" style="color: #8ab4ff;">github.com/sniwflake</a></p>
-    <p>Discord: Sniwflake#0001</p>
-  </section>
+  <script>
+    const canvas = document.querySelector('.matrix-fall');
+    const ctx = canvas.getContext('2d');
 
-  <footer>
-    &copy; 2025 Sniwflake. Reality is just the code you haven't written yet.
-  </footer>
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+
+    function resizeCanvas() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const fontSize = 14;
+    const columns = Math.floor(W / fontSize);
+    const drops = new Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.fillStyle = '#8ab4ff';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < columns; i++) {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > H || Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 40);
+  </script>
 </body>
 </html>
