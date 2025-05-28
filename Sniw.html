@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sniwflake Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Body + base */
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(ellipse at center, #0a0a0a 0%, #050505 100%);
+      color: #9ecbff;
+      overflow-x: hidden;
+      min-height: 100vh;
+      position: relative;
+      font-size: 16px;
+    }
+
+    /* Canvas matrix full screen */
+    canvas.matrix-fall {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: transparent;
+      display: block;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: #0f0f0f;
+      padding: 2rem;
+      font-size: 3rem;
+      color: #8ab4ff;
+      text-align: center;
+      box-shadow: 0 0 30px #8ab4ff;
+      z-index: 10;
+    }
+
+    /* Sections */
+    section {
+      max-width: 1100px;
+      margin: 4rem auto;
+      padding: 0 2rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1.2s ease-out;
+      position: relative;
+      z-index: 5;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1.2rem;
+      border-bottom: 2px solid #9ecbff;
+      padding-bottom: 0.3rem;
+      width: fit-content;
+      color: #9ecbff;
+    }
+
+    /* About Me Card */
+    .about-card {
+      background: linear-gradient(to right, #10121b, #1b1f2b);
+      padding: 2rem;
+      border: 1px solid #8ab4ff;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(138, 180, 255, 0.2);
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #8ab4ff;
+      box-shadow: 0 0 20px rgba(138, 180, 255, 0.4);
+      flex-shrink: 0;
+    }
+    .about-text p {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #ccd6f6;
+    }
+
+    /* Projects */
+    .project {
+      background: linear-gradient(to right, #10121b, #1b1f2b);
+      margin: 2rem 0;
+      padding: 1.5rem;
+      border-left: 5px solid #8ab4ff;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(138, 180, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 35px rgba(138, 180, 255, 0.5);
+    }
+    .project h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #a5d6ff;
+    }
+    .project p {
+      font-size: 1rem;
+      color: #d6e4ff;
+    }
+
+    /* Contact */
+    #contact p {
+      font-size: 1rem;
+      margin: 0.4rem 0;
+    }
+    #contact a {
+      color: #8ab4ff;
+      text-decoration: none;
+    }
+    #contact a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a0a0a;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid #8ab4ff;
+      font-size: 0.9rem;
+      color: #888;
+      position: relative;
+      z-index: 5;
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas class="matrix-fall"></canvas>
+
+  <header>Sniwflake</header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-card">
+      <img src="https://avatars.githubusercontent.com/u/000000?v=4" alt="Sniwflake Avatar" />
+      <div class="about-text">
+        <p>I’m <strong>Sniwflake</strong> — a multidimensional developer crafting futuristic experiences. With 5+ years in scripting, coding, web building, 3D/2D modeling, game design, and Discord bots, I bring ideas to life.</p>
+        <p>Fluent in <strong>Python</strong>, <strong>C++</strong>, <strong>Rust</strong>, <strong>JavaScript</strong>, <strong>HTML</strong>, <strong>CSS</strong>, and many more — I create immersive projects ranging from PvP Minecraft clients to sci-fi games and sleek UIs.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <div class="project">
+      <h3>Sniw Client</h3>
+      <p>Custom Minecraft PvP client with a sci-fi UI, launcher, and cross-version compatibility.</p>
+    </div>
+
+    <div class="project">
+      <h3>Linux Boot Camp Assistant</h3>
+      <p>Dual-boot wizard with auto partitioning, bootloader fixing, and dark-themed GUI — perfect for Mint + Windows setups.</p>
+    </div>
+
+    <div class="project">
+      <h3>3D Sci-Fi Game Demo</h3>
+      <p>Experimental FPS with modular weapons, alien terrains, and enemy AI coded from scratch.</p>
+    </div>
+
+    <div class="project">
+      <h3>Discord Bot Suite</h3>
+      <p>Feature-rich Discord bots tailored for communities — with moderation, games, and utility commands.</p>
+    </div>
+
+    <div class="project">
+      <h3>Portfolio Website</h3>
+      <p>Dark-themed, futuristic, animated portfolio showcasing my skills and projects with 3D effects.</p>
+    </div>
+
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email: your.email@example.com</p>
+    <p>GitHub: <a href="https://github.com/sniwflake" target="_blank" rel="noopener">github.com/sniwflake</a></p>
+    <p>Discord: Sniwflake#0001</p>
+  </section>
+
+  <footer>
+    &copy; 2025 Sniwflake. Reality is just the code you haven't written yet.
+  </footer>
+
+  <script>
+    // Section scroll fade-in animation
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(section => observer.observe(section));
+
+    // Matrix animation
+    const canvas = document.querySelector('.matrix-fall');
+    const ctx = canvas.getContext('2d');
+
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+
+    function resizeCanvas() {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const fontSize = 14;
+    const columns = Math.floor(W / fontSize);
+    const drops = new Array(columns).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#8ab4ff';
+      ctx.font = fontSize + 'px monospace';
+
+      for(let i = 0; i < columns; i++) {
+        const text = String.fromCharCode(0x30A0 + Math.random() * 96);
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        if(drops[i] * fontSize > H || Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 40);
+  </script>
+</body>
+</html>
+
